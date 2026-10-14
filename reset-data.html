@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reset Data - Waffle King POS</title>
+  <link rel="stylesheet" href="css/styles.output.css" />
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full">
+    <h1 class="text-2xl font-bold text-gray-900 mb-4">⚠️ Reset All Data</h1>
+    <p class="text-gray-600 mb-6">
+      This will clear all localStorage data including products, categories, orders, and users.
+      After clearing, the system will re-seed with the new category structure (Waffle, Donut, Milktea, Coffee, Add-ons, Others).
+    </p>
+    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+      <p class="text-yellow-800 text-sm font-medium">⚠️ This action cannot be undone!</p>
+    </div>
+    <button id="reset-btn" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl py-3 mb-3">
+      Clear All Data & Reset
+    </button>
+    <a href="index.html" class="block w-full text-center text-gray-600 hover:text-gray-800 font-medium">
+      Cancel (Go to Login)
+    </a>
+    <div id="status" class="mt-4 text-center text-sm"></div>
+  </div>
+
+  <script type="module">
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      const status = document.getElementById('status');
+      status.textContent = 'Clearing data...';
+      status.className = 'mt-4 text-center text-sm text-blue-600';
+
+      localStorage.clear();
+      sessionStorage.clear();
+
+      status.textContent = '✅ Data cleared! Redirecting to login...';
+      status.className = 'mt-4 text-center text-sm text-green-600';
+
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

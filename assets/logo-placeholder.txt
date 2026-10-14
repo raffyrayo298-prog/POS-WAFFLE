@@ -1,0 +1,6 @@
+Waffle King Logo Placeholder
+
+Please replace this file with your actual Waffle King logo image.
+Supported formats: PNG, JPG, SVG
+
+Recommended size: 200x200 pixels for optimal display in the POS system.

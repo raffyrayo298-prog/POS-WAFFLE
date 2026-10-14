@@ -1,0 +1,63 @@
+<svg width="1400" height="1400" viewBox="0 0 1400 1400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="200" y1="180" x2="1160" y2="1240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2B1A12"/>
+      <stop offset="1" stop-color="#170F0B"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="430" y1="180" x2="980" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE38A"/>
+      <stop offset="0.38" stop-color="#F7BF3A"/>
+      <stop offset="1" stop-color="#D77F14"/>
+    </linearGradient>
+    <linearGradient id="waffle" x1="420" y1="340" x2="870" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5D57A"/>
+      <stop offset="1" stop-color="#E59E27"/>
+    </linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#1A0E09" flood-opacity="0.26"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="1400" rx="140" fill="url(#bgGrad)"/>
+
+  <g filter="url(#shadow)">
+    <path d="M145 440C140 535 210 615 266 621C337 628 399 596 435 550L474 500L536 532C578 555 659 550 705 520L766 478L815 530C865 586 928 628 998 625C1055 622 1113 576 1121 510C1130 440 1083 388 1020 382C968 377 919 402 876 436L819 483L773 439C734 395 680 367 622 363C555 358 497 385 454 430L420 466L380 436C343 403 299 384 252 386C194 388 160 398 145 440Z" fill="#F9DC74" opacity="0.14"/>
+
+    <path d="M430 260L520 150L600 250L680 150L770 260L850 210L930 300L1000 335H330L430 260Z" fill="url(#gold)" stroke="#4B250C" stroke-width="18" stroke-linejoin="round"/>
+    <circle cx="520" cy="150" r="30" fill="#FCE7A7" stroke="#4B250C" stroke-width="12"/>
+    <circle cx="600" cy="250" r="30" fill="#FCE7A7" stroke="#4B250C" stroke-width="12"/>
+    <circle cx="680" cy="150" r="30" fill="#FCE7A7" stroke="#4B250C" stroke-width="12"/>
+    <circle cx="770" cy="260" r="24" fill="#D3312A" stroke="#4B250C" stroke-width="10"/>
+    <circle cx="520" cy="250" r="24" fill="#D3312A" stroke="#4B250C" stroke-width="10"/>
+    <circle cx="680" cy="250" r="24" fill="#D3312A" stroke="#4B250C" stroke-width="10"/>
+
+    <circle cx="700" cy="500" r="285" fill="#F4D364" stroke="#4B250C" stroke-width="22"/>
+    <circle cx="700" cy="500" r="230" fill="url(#waffle)" stroke="#4B250C" stroke-width="18"/>
+
+    <g stroke="#4B250C" stroke-width="16" stroke-linecap="round">
+      <path d="M515 420V650"/>
+      <path d="M595 420V650"/>
+      <path d="M675 420V650"/>
+      <path d="M755 420V650"/>
+      <path d="M835 420V650"/>
+      <path d="M455 480H945"/>
+      <path d="M455 570H945"/>
+      <path d="M455 660H945"/>
+    </g>
+
+    <circle cx="620" cy="540" r="24" fill="#1A110D"/>
+    <circle cx="780" cy="540" r="24" fill="#1A110D"/>
+    <circle cx="620" cy="540" r="9" fill="#F6F1E8"/>
+    <circle cx="780" cy="540" r="9" fill="#F6F1E8"/>
+    <path d="M645 650C680 690 740 690 775 650" stroke="#4B250C" stroke-width="15" stroke-linecap="round" fill="none"/>
+    <path d="M660 630C690 654 733 654 763 630" stroke="#EEB63A" stroke-width="7" stroke-linecap="round" fill="none"/>
+
+    <path d="M420 820C330 880 250 960 220 1045C206 1085 222 1118 256 1127C290 1137 324 1117 340 1085L402 958L454 853L420 820Z" fill="#F7D565" stroke="#4B250C" stroke-width="16"/>
+    <path d="M980 820C1070 880 1150 960 1180 1045C1194 1085 1178 1118 1144 1127C1110 1137 1076 1117 1060 1085L998 958L946 853L980 820Z" fill="#F7D565" stroke="#4B250C" stroke-width="16"/>
+
+    <g>
+      <text x="700" y="1160" text-anchor="middle" font-size="210" font-weight="900" font-family="Georgia, 'Times New Roman', serif" fill="#F7E7B4" stroke="#4B250C" stroke-width="12" font-style="italic">Waffle</text>
+      <text x="700" y="1295" text-anchor="middle" font-size="180" font-weight="900" font-family="Georgia, 'Times New Roman', serif" fill="#F7E7B4" stroke="#4B250C" stroke-width="12">King</text>
+    </g>
+  </g>
+</svg>

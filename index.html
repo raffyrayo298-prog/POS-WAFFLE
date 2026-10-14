@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+<title>Waffle King POS</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧇</text></svg>" />
+<link rel="stylesheet" href="css/styles.output.css?v=2" />
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Hide scrollbar but keep scrolling functionality */
+  html::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  body {
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+  .hero-gradient {
+    background: radial-gradient(ellipse at top right, rgba(251, 191, 36, 0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at bottom left, rgba(251, 191, 36, 0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at center, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+  }
+  .card-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .card-hover:hover::before {
+    opacity: 1;
+  }
+  .card-hover:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    border-color: rgba(251, 191, 36, 0.5);
+  }
+  .feature-icon {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card-hover:hover .feature-icon {
+    transform: scale(1.2) rotate(8deg);
+  }
+  .btn-glow {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+  }
+  .btn-glow:hover::before {
+    left: 100%;
+  }
+  .btn-glow:hover {
+    box-shadow: 0 0 50px rgba(251, 191, 36, 0.6);
+    transform: translateY(-3px) scale(1.02);
+  }
+  .btn-secondary {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+    transition: left 0.5s;
+  }
+  .btn-secondary:hover::before {
+    left: 100%;
+  }
+  .btn-secondary:hover {
+    transform: translateY(-3px) scale(1.02);
+  }
+  .stat-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .stat-card:hover::after {
+    opacity: 1;
+  }
+  .stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+  }
+  .float-animation {
+    animation: float 5s ease-in-out infinite;
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 3s infinite;
+  }
+  @keyframes shimmer {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
+  .bg-pulse {
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+</style>
+</head>
+<body class="bg-[#C4A77D] text-espresso-900 min-h-screen hero-gradient relative">
+  <!-- Animated background elements -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-20 left-10 w-64 h-64 bg-amber-400/10 rounded-full blur-3xl bg-pulse"></div>
+    <div class="absolute bottom-20 right-10 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl bg-pulse" style="animation-delay: 2s;"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-400/5 rounded-full blur-3xl bg-pulse" style="animation-delay: 1s;"></div>
+  </div>
+  <div id="landing-page" class="hidden min-h-screen relative z-10">
+    <header class="sticky top-0 z-30 backdrop-blur-xl bg-[#B8956E]/95 border-b border-espresso-900/10 shadow-2xl">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
+        <div class="flex items-center gap-3 group cursor-pointer">
+          <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 text-2xl shadow-2xl shadow-amber-500/40 transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-amber-500/50">🧇</div>
+          <div>
+            <p class="font-display text-xl font-bold tracking-wide text-espresso-900 transition-colors group-hover:text-amber-700">Waffle King</p>
+            <p class="text-[10px] uppercase tracking-[0.22em] text-espresso-700 font-medium">POS & Admin</p>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden items-center gap-3 text-sm md:flex">
+          <a href="#home" class="rounded-full border border-espresso-900/20 px-4 py-2 font-semibold text-espresso-900 hover:bg-amber-400/20 hover:border-amber-400/50 hover:text-amber-700 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 hover:-translate-y-0.5">Home</a>
+          <a href="#features" class="rounded-full border border-espresso-900/20 px-4 py-2 font-semibold text-espresso-900 hover:bg-amber-400/20 hover:border-amber-400/50 hover:text-amber-700 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 hover:-translate-y-0.5">Features</a>
+          <a href="#benefits" class="rounded-full border border-espresso-900/20 px-4 py-2 font-semibold text-espresso-900 hover:bg-amber-400/20 hover:border-amber-400/50 hover:text-amber-700 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 hover:-translate-y-0.5">Benefits</a>
+          <a href="#admin" class="rounded-full border border-espresso-900/20 px-4 py-2 font-semibold text-espresso-900 hover:bg-amber-400/20 hover:border-amber-400/50 hover:text-amber-700 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 hover:-translate-y-0.5">Admin</a>
+        </nav>
+
+        <!-- Desktop Buttons -->
+        <div class="hidden items-center gap-2 md:flex">
+          <a href="login.html" class="rounded-full border border-espresso-900/30 px-4 py-2 text-sm font-semibold text-espresso-900 hover:bg-espresso-900/10 hover:border-espresso-900/50 hover:shadow-xl transition-all btn-secondary hover:-translate-y-0.5">Staff Login</a>
+          <a href="admin-login.html" class="rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-4 py-2 text-sm font-bold text-espresso-950 hover:from-amber-300 hover:to-amber-400 hover:shadow-xl hover:shadow-amber-500/40 transition-all btn-glow hover:-translate-y-0.5">Admin Access</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-espresso-900/10 transition-colors">
+          <svg class="w-6 h-6 text-espresso-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-[#B8956E]/95 backdrop-blur-xl border-t border-espresso-900/10">
+        <nav class="flex flex-col px-4 py-4 gap-3">
+          <a href="#home" class="rounded-full border border-espresso-900/20 px-4 py-2.5 text-sm font-semibold text-espresso-900 hover:bg-amber-400/20 hover:border-amber-400/50 hover:text-amber-700 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 text-center">Home</a>
+          <a href="#features" class="rounded-full border border-espresso-900/20 px-4 py-2.5 text-sm font-semibold text-espresso-900 hover:bg-amber-400/20 hover:border-amber-400/50 hover:text-amber-700 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 text-center">Features</a>
+          <a href="#benefits" class="rounded-full border border-espresso-900/20 px-4 py-2.5 text-sm font-semibold text-espresso-900 hover:bg-amber-400/20 hover:border-amber-400/50 hover:text-amber-700 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 text-center">Benefits</a>
+          <a href="#admin" class="rounded-full border border-espresso-900/20 px-4 py-2.5 text-sm font-semibold text-espresso-900 hover:bg-amber-400/20 hover:border-amber-400/50 hover:text-amber-700 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 text-center">Admin</a>
+          <div class="border-t border-espresso-900/10 pt-3 mt-2 flex flex-col gap-2">
+            <a href="login.html" class="w-full rounded-full border border-espresso-900/30 px-4 py-2.5 text-sm font-semibold text-espresso-900 hover:bg-espresso-900/10 hover:border-espresso-900/50 hover:shadow-xl transition-all text-center btn-secondary hover:-translate-y-0.5">Staff Login</a>
+            <a href="admin-login.html" class="w-full rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-4 py-2.5 text-sm font-bold text-espresso-950 hover:from-amber-300 hover:to-amber-400 hover:shadow-xl hover:shadow-amber-500/40 transition-all text-center btn-glow hover:-translate-y-0.5">Admin Access</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home" class="mx-auto max-w-6xl px-4 pb-20 pt-12 sm:px-6 lg:pt-20">
+      <section class="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+        <div>
+          <span class="inline-flex items-center rounded-full border border-amber-400/30 bg-amber-400/10 backdrop-blur-sm px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-amber-700 shadow-lg shadow-amber-500/20">✨ Faster service • smarter sales</span>
+          <h1 class="mt-6 max-w-xl font-display text-4xl font-bold leading-tight text-espresso-900 sm:text-5xl lg:text-6xl">
+            Waffle <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700">King</span> POS starts here.
+          </h1>
+          <p class="mt-6 max-w-xl text-base text-espresso-700 sm:text-lg leading-relaxed font-medium">
+            Run orders faster, track inventory in real time, and manage every sale from one connected shop dashboard.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="login.html" class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-8 py-3.5 text-base font-bold text-espresso-950 shadow-xl shadow-amber-500/30 transition-all hover:from-amber-300 hover:to-amber-400 hover:shadow-2xl hover:shadow-amber-500/40 hover:-translate-y-1 btn-glow">Start Order</a>
+            <a href="admin-login.html" class="inline-flex items-center justify-center rounded-full border border-espresso-900/15 bg-white/50 backdrop-blur-sm px-8 py-3.5 text-base font-bold text-espresso-900 transition-all hover:bg-white/70 hover:border-espresso-900/30 hover:shadow-xl hover:-translate-y-1 btn-secondary">Open Admin Portal</a>
+          </div>
+
+          <div class="mt-10 grid max-w-lg grid-cols-3 gap-4 text-left">
+            <div class="rounded-3xl border border-espresso-900/10 bg-white/60 backdrop-blur-xl stat-card p-4 card-hover cursor-pointer">
+              <p class="text-3xl font-bold text-amber-600">24/7</p>
+              <p class="text-xs text-espresso-800 mt-1 font-semibold">sales tracking</p>
+            </div>
+            <div class="rounded-3xl border border-espresso-900/10 bg-white/60 backdrop-blur-xl stat-card p-4 card-hover cursor-pointer">
+              <p class="text-3xl font-bold text-amber-600">Live</p>
+              <p class="text-xs text-espresso-800 mt-1 font-semibold">inventory sync</p>
+            </div>
+            <div class="rounded-3xl border border-espresso-900/10 bg-white/60 backdrop-blur-xl stat-card p-4 card-hover cursor-pointer">
+              <p class="text-3xl font-bold text-amber-600">1 tap</p>
+              <p class="text-xs text-espresso-800 mt-1 font-semibold">checkout flow</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-[2.5rem] border border-white/20 bg-gradient-to-br from-[#2a1d17] via-[#201612] to-[#120d0a] p-6 shadow-2xl shadow-black/50 float-animation transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/30 shimmer backdrop-blur-xl">
+          <div class="rounded-[2rem] border border-white/20 bg-[#f4efe8]/95 backdrop-blur-xl p-6 text-espresso-900 transition-all duration-300 hover:shadow-inner glass-card">
+            <div class="mb-5 flex items-center justify-between">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-espresso-500">Today</p>
+                <h2 class="mt-1 font-display text-2xl font-bold">Sales Overview</h2>
+              </div>
+              <span class="rounded-full bg-gradient-to-r from-emerald-100 to-emerald-200 px-3 py-1.5 text-xs font-bold text-emerald-700 border border-emerald-300 shadow-lg animate-pulse">● Live</span>
+            </div>
+
+            <div class="space-y-4">
+              <div class="rounded-3xl bg-gradient-to-br from-cream-100 to-cream-50 p-4 shadow-lg backdrop-blur-sm border border-cream-200">
+                <p class="text-xs uppercase tracking-[0.15em] text-espresso-500 font-bold">Revenue</p>
+                <p class="mt-1 text-3xl font-bold text-espresso-900">P18,430</p>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="rounded-3xl bg-gradient-to-br from-cream-100 to-cream-50 p-4 shadow-lg backdrop-blur-sm border border-cream-200">
+                  <p class="text-xs uppercase tracking-[0.15em] text-espresso-500 font-bold">Orders</p>
+                  <p class="mt-1 text-2xl font-bold text-espresso-900">218</p>
+                </div>
+                <div class="rounded-3xl bg-gradient-to-br from-cream-100 to-cream-50 p-4 shadow-lg backdrop-blur-sm border border-cream-200">
+                  <p class="text-xs uppercase tracking-[0.15em] text-espresso-500 font-bold">Low Stock</p>
+                  <p class="mt-1 text-2xl font-bold text-rust-600">4 items</p>
+                </div>
+              </div>
+              <div class="rounded-3xl bg-gradient-to-br from-cream-100 to-cream-50 p-4 shadow-lg backdrop-blur-sm border border-cream-200">
+                <div class="mb-3 flex items-center justify-between">
+                  <span class="text-xs uppercase tracking-[0.15em] text-espresso-500 font-bold">Top sellers</span>
+                  <span class="text-xs font-bold text-espresso-600 bg-espresso-100 px-2 py-0.5 rounded-full">Today</span>
+                </div>
+                <div class="space-y-2.5 text-sm">
+                  <div class="flex items-center justify-between"><span class="text-espresso-700 font-medium">Belgian Waffle</span><span class="font-bold text-espresso-900">42</span></div>
+                  <div class="flex items-center justify-between"><span class="text-espresso-700 font-medium">Iced Coffee</span><span class="font-bold text-espresso-900">36</span></div>
+                  <div class="flex items-center justify-between"><span class="text-espresso-700 font-medium">Bubble Waffle</span><span class="font-bold text-espresso-900">29</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="mt-24">
+        <div class="mb-10 text-center">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-amber-600">Features</p>
+          <h2 class="mt-4 font-display text-3xl font-bold text-espresso-900 sm:text-4xl">Built for busy cafes and waffle shops</h2>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <article class="rounded-3xl border border-espresso-900/10 bg-white/70 backdrop-blur-xl p-6 card-hover cursor-pointer glass-card shadow-lg">
+            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400/40 to-amber-500/40 text-3xl feature-icon shadow-lg shadow-amber-500/20">🧾</div>
+            <h3 class="text-xl font-bold text-espresso-900">Fast checkout</h3>
+            <p class="mt-3 text-sm leading-6 text-espresso-700 font-medium">Add items, apply modifiers, and complete sales with a smooth order flow built for frontline staff.</p>
+          </article>
+
+          <article class="rounded-3xl border border-espresso-900/10 bg-white/70 backdrop-blur-xl p-6 card-hover cursor-pointer glass-card shadow-lg">
+            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400/40 to-amber-500/40 text-3xl feature-icon shadow-lg shadow-amber-500/20">📦</div>
+            <h3 class="text-xl font-bold text-espresso-900">Inventory sync</h3>
+            <p class="mt-3 text-sm leading-6 text-espresso-700 font-medium">Every stock deduction from a sale updates the admin inventory immediately so the cashier and admin stay aligned.</p>
+          </article>
+
+          <article class="rounded-3xl border border-espresso-900/10 bg-white/70 backdrop-blur-xl p-6 card-hover cursor-pointer glass-card shadow-lg">
+            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400/40 to-amber-500/40 text-3xl feature-icon shadow-lg shadow-amber-500/20">📊</div>
+            <h3 class="text-xl font-bold text-espresso-900">Sales dashboard</h3>
+            <p class="mt-3 text-sm leading-6 text-espresso-700 font-medium">Monitor revenue, order count, item movement, and trending products from the admin panel in real time.</p>
+          </article>
+
+          <article class="rounded-3xl border border-espresso-900/10 bg-white/70 backdrop-blur-xl p-6 card-hover cursor-pointer glass-card shadow-lg">
+            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400/40 to-amber-500/40 text-3xl feature-icon shadow-lg shadow-amber-500/20">⚙️</div>
+            <h3 class="text-xl font-bold text-espresso-900">Admin controls</h3>
+            <p class="mt-3 text-sm leading-6 text-espresso-700 font-medium">Manage stock, add products, view order history, and oversee the whole business from a protected admin side.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="benefits" class="mt-24 grid gap-6 rounded-[2.5rem] border border-espresso-900/10 bg-gradient-to-br from-white/70 to-white/50 backdrop-blur-xl p-8 md:grid-cols-3 shadow-xl">
+        <div class="md:col-span-3">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-amber-600">Why it works</p>
+          <h2 class="mt-3 font-display text-3xl font-bold text-espresso-900 sm:text-4xl">Everything your shop needs</h2>
+        </div>
+        <div class="rounded-3xl border border-espresso-900/10 bg-white/90 backdrop-blur-sm p-5 card-hover cursor-pointer glass-card shadow-lg">
+          <p class="text-sm font-bold text-amber-600 flex items-center gap-2">⚡ Faster service</p>
+          <p class="mt-3 text-sm leading-6 text-espresso-700 font-medium">Reduce checkout delays with a clean menu, quick modifiers, and instant total updates.</p>
+        </div>
+        <div class="rounded-3xl border border-espresso-900/10 bg-white/90 backdrop-blur-sm p-5 card-hover cursor-pointer glass-card shadow-lg">
+          <p class="text-sm font-bold text-amber-600 flex items-center gap-2">🎯 Better control</p>
+          <p class="mt-3 text-sm leading-6 text-espresso-700 font-medium">Track low stock before it becomes a problem and keep the menu aligned with actual inventory.</p>
+        </div>
+        <div class="rounded-3xl border border-espresso-900/10 bg-white/90 backdrop-blur-sm p-5 card-hover cursor-pointer glass-card shadow-lg">
+          <p class="text-sm font-bold text-amber-600 flex items-center gap-2">📈 Real-time data</p>
+          <p class="mt-3 text-sm leading-6 text-espresso-700 font-medium">See what sells, what needs reordering, and how each shift is performing without manual logs.</p>
+        </div>
+      </section>
+
+      <section id="admin" class="mt-24 rounded-[2.5rem] border border-amber-400/30 bg-gradient-to-br from-amber-400/20 to-amber-400/10 p-8 sm:p-10 backdrop-blur-xl shadow-2xl">
+        <div class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-amber-700">Admin portal</p>
+            <h2 class="mt-3 font-display text-3xl font-bold text-espresso-900 sm:text-4xl">Full control over your sales and stock</h2>
+          </div>
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <a href="admin-login.html" class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-8 py-3.5 font-bold text-espresso-950 transition-all hover:from-amber-300 hover:to-amber-400 hover:shadow-2xl hover:shadow-amber-500/40 hover:-translate-y-1 btn-glow">Admin Login</a>
+            <a href="admin-signup.html" class="inline-flex items-center justify-center rounded-full border border-espresso-900/15 bg-white/50 backdrop-blur-sm px-8 py-3.5 font-bold text-espresso-900 transition-all hover:bg-white/70 hover:border-espresso-900/30 hover:shadow-xl hover:-translate-y-1 btn-secondary">Create Admin</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="mt-24 border-t border-espresso-900/10 pt-8 text-center">
+        <p class="text-sm text-espresso-700">© 2024 Waffle King POS. All rights reserved.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import { auth } from "./js/backend.js?v=2";
+    import { clearRedirectGuard } from "./js/auth-guard.js?v=2";
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Close mobile menu when clicking a link
+      mobileMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+    }
+
+    function showLanding() {
+      const landing = document.getElementById("landing-page");
+      if (landing) landing.classList.remove("hidden");
+    }
+
+    function routeUser(user) {
+      clearRedirectGuard();
+      if (!user) {
+        showLanding();
+        return;
+      }
+      const target = user.role === "admin" ? "admin.html" : "app.html";
+      const current = window.location.pathname.split("/").pop();
+      if (current !== target) {
+        window.location.replace(target);
+      }
+    }
+
+    const currentUser = auth.getCurrentUser?.();
+    if (currentUser) {
+      routeUser(currentUser);
+    } else {
+      const unsub = auth.onAuthChange((user) => {
+        routeUser(user);
+      });
+      showLanding();
+    }
+  </script>
+</body>
+</html>

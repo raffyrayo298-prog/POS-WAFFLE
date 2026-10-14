@@ -1,0 +1,28 @@
+{
+  "name": "brew-pos",
+  "version": "1.0.0",
+  "description": "A responsive, touch-friendly point-of-sale system for a coffee shop cash register — ordering, cart, checkout, thermal-printer receipts, order history, login/signup — **plus a separate Admin Portal** for realtime sales tracking, inventory management, and printable/exportable reports. \"Brew POS\" is a placeholder name/logo; see **Rebranding** below to swap it out.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "python -m http.server 3000",
+    "build": "npx tailwindcss -i ./css/styles.css -o ./css/styles.output.css",
+    "build:css": "npx tailwindcss -i ./css/styles.css -o ./css/styles.output.css",
+    "build:css:min": "npx tailwindcss -i ./css/styles.css -o ./css/styles.output.css --minify",
+    "e2e": "npx playwright test --reporter=line",
+    "postinstall": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17"
+  }
+}
