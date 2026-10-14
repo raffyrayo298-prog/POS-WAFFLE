@@ -33,3 +33,5 @@ firebase-debug.log
 # Playwright
 playwright-report/
 test-results/
+
+.vercel

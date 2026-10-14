@@ -7,6 +7,9 @@
 // Database: https://admin-side-68d3d-default-rtdb.firebaseio.com
 // ============================================================================
 
+// Firebase configuration
+// Project: admin-side-68d3d
+// Database: https://admin-side-68d3d-default-rtdb.firebaseio.com
 export const FIREBASE_CONFIG = {
   apiKey: "AIzaSyCJqWSXZa9nv5x5G9crKX_Zj192IL6lGUo",
   authDomain: "admin-side-68d3d.firebaseapp.com",

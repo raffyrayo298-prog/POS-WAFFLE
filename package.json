@@ -13,7 +13,8 @@
     "build:css": "npx tailwindcss -i ./css/styles.css -o ./css/styles.output.css",
     "build:css:min": "npx tailwindcss -i ./css/styles.css -o ./css/styles.output.css --minify",
     "e2e": "npx playwright test --reporter=line",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "vercel-build": "npm run build"
   },
   "keywords": [],
   "author": "",
