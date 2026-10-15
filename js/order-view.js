@@ -41,7 +41,7 @@ export async function initOrderView(root, ctx) {
             <span class="absolute left-3 top-1/2 -translate-y-1/2 text-espresso-400 text-sm">🔍</span>
           </div>
         </div>
-        <div id="product-grid" class="flex-1 overflow-y-auto bp-scroll p-3 sm:p-4 grid gap-3 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 content-start pb-24 sm:pb-4"></div>
+        <div id="product-grid" class="flex-1 overflow-y-auto bp-scroll p-3 sm:p-4 grid gap-3 content-start pb-24 sm:pb-4" style="grid-template-columns: repeat(2, 1fr);"></div>
       </div>
 
       <div id="cart-backdrop" class="sm:hidden fixed inset-0 bg-black/50 z-20 opacity-0 pointer-events-none transition-opacity duration-200"></div>
@@ -176,6 +176,14 @@ export async function initOrderView(root, ctx) {
 
   function renderGrid() {
     if (!grid) return;
+
+    // Force 2 columns on very small screens (≤480px), 3 columns on all other screens
+    if (window.innerWidth <= 480) {
+      grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    } else {
+      grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    }
+
     const term = searchTerm.trim().toLowerCase();
     const list = products.filter((p) => {
       const matchesCat = activeCategory === "all" || p.categoryId === activeCategory;
@@ -192,23 +200,39 @@ export async function initOrderView(root, ctx) {
       const { canMake, limiting } = canMakeProduct(p, ingredients);
       const isOutOfStock = !canMake;
 
+      // Get category icon based on category name
+      const category = categories.find(c => c.id === p.categoryId);
+      const categoryName = category ? category.name.toLowerCase() : "";
+      let categoryIcon = "☕"; // default
+      if (categoryName.includes("waffle")) {
+        categoryIcon = "🧇";
+      } else if (categoryName.includes("milktea") || categoryName.includes("milk tea") || categoryName.includes("bubble")) {
+        categoryIcon = "🧋";
+      } else if (categoryName.includes("coffee")) {
+        categoryIcon = "☕";
+      } else if (categoryName.includes("donut")) {
+        categoryIcon = "🍩";
+      } else if (categoryName.includes("fruit")) {
+        categoryIcon = "🍹";
+      }
+
       const card = el(
         "button",
-        isOutOfStock 
-          ? "bp-tap text-left bg-white rounded-2xl border border-espresso-100 shadow-lg p-3 flex flex-col gap-2 active:shadow-none transition-all hover:shadow-xl hover:-translate-y-1 opacity-60 cursor-not-allowed"
-          : "bp-tap text-left bg-white rounded-2xl border border-espresso-100 shadow-lg p-3 flex flex-col gap-2 active:shadow-none transition-all hover:shadow-xl hover:-translate-y-1"
+        isOutOfStock
+          ? "bp-tap text-left bg-white rounded-2xl border border-espresso-100 shadow-lg p-2.5 sm:p-3 flex flex-col gap-2 active:shadow-none transition-all hover:shadow-xl hover:-translate-y-1 opacity-60 cursor-not-allowed"
+          : "bp-tap text-left bg-white rounded-2xl border border-espresso-100 shadow-lg p-2.5 sm:p-3 flex flex-col gap-2 active:shadow-none transition-all hover:shadow-xl hover:-translate-y-1"
       );
       card.type = "button";
       card.disabled = isOutOfStock;
       card.innerHTML = `
-        <div class="w-full aspect-square rounded-xl bg-gradient-to-br from-cream-200 to-amber-100 flex items-center justify-center text-3xl overflow-hidden relative group">
-          ${p.imageUrl ? `<img src="${p.imageUrl}" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="${p.name}">` : "☕"}
+        <div class="w-full aspect-square rounded-xl bg-gradient-to-br from-cream-200 to-amber-100 flex items-center justify-center text-5xl sm:text-6xl overflow-hidden relative group">
+          ${p.imageUrl ? `<img src="${p.imageUrl}" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="${p.name}">` : categoryIcon}
           <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           ${isOutOfStock ? '<div class="absolute inset-0 bg-black/40 flex items-center justify-center"><span class="text-white text-xs font-bold px-2 py-1 rounded bg-rust-600">Out of stock</span></div>' : ''}
         </div>
-        <div class="flex-1">
-          <p class="font-semibold text-sm text-espresso-900 bp-clamp-2 leading-snug">${p.name}</p>
-          <p class="text-espresso-500 text-sm mt-0.5 font-medium">${formatMoney(p.price, ctx.settings.currency)}</p>
+        <div class="flex-1 flex flex-col justify-between">
+          <p class="font-semibold text-xs sm:text-sm text-espresso-900 bp-clamp-2 leading-tight">${p.name}</p>
+          <p class="text-espresso-500 text-xs sm:text-sm mt-1 font-bold">${formatMoney(p.price, ctx.settings.currency)}</p>
           ${isOutOfStock ? `<p class="text-xs text-rust-600 mt-1">Needs: ${limiting}</p>` : ''}
         </div>
       `;
