@@ -1,0 +1,8 @@
+{
+  "appId": "com.waffleking.pos",
+  "appName": "Waffle King POS",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

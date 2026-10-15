@@ -1,7 +1,7 @@
 {
-  "name": "brew-pos",
+  "name": "waffle-king-101",
   "version": "1.0.0",
-  "description": "A responsive, touch-friendly point-of-sale system for a coffee shop cash register — ordering, cart, checkout, thermal-printer receipts, order history, login/signup — **plus a separate Admin Portal** for realtime sales tracking, inventory management, and printable/exportable reports. \"Brew POS\" is a placeholder name/logo; see **Rebranding** below to swap it out.",
+  "description": "A responsive, touch-friendly point-of-sale system for a coffee shop cash register — ordering, cart, checkout, thermal-printer receipts, order history, login/signup — **plus a separate Admin Portal** for realtime sales tracking, inventory management, and printable/exportable reports. \"Waffle King 101\" is a placeholder name/logo; see **Rebranding** below to swap it out.",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -25,5 +25,10 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/cli": "^8.5.3",
+    "@capacitor/core": "^8.5.3"
   }
 }
