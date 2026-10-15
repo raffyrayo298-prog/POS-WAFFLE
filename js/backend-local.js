@@ -89,8 +89,9 @@ function maybeSeedData() {
       cat_donut: { name: "Donut", sortOrder: 2 },
       cat_milktea: { name: "Milktea", sortOrder: 3 },
       cat_coffee: { name: "Coffee", sortOrder: 4 },
-      cat_addons: { name: "Add-ons", sortOrder: 5 },
-      cat_others: { name: "Others", sortOrder: 6 },
+      cat_fruittea: { name: "Fruit Tea", sortOrder: 5 },
+      cat_addons: { name: "Add-ons", sortOrder: 6 },
+      cat_others: { name: "Others", sortOrder: 7 },
     });
   }
 
@@ -545,6 +546,106 @@ function maybeSeedData() {
         ],
         stock: 40,
         costPrice: 27,
+        lowStockThreshold: 10,
+      },
+
+      // FRUIT TEA CATEGORY
+      p_ft_lychee: {
+        categoryId: "cat_fruittea",
+        name: "Fruit Tea - Lychee",
+        price: 59,
+        imageUrl: "",
+        isAvailable: true,
+        modifiers: [
+          { name: "Medium", priceDelta: 0 },
+          { name: "Large", priceDelta: 10 }
+        ],
+        stock: 40,
+        costPrice: 28,
+        lowStockThreshold: 10,
+      },
+      p_ft_apple_green: {
+        categoryId: "cat_fruittea",
+        name: "Fruit Tea - Apple Green",
+        price: 59,
+        imageUrl: "",
+        isAvailable: true,
+        modifiers: [
+          { name: "Medium", priceDelta: 0 },
+          { name: "Large", priceDelta: 10 }
+        ],
+        stock: 40,
+        costPrice: 28,
+        lowStockThreshold: 10,
+      },
+      p_ft_orange: {
+        categoryId: "cat_fruittea",
+        name: "Fruit Tea - Orange",
+        price: 59,
+        imageUrl: "",
+        isAvailable: true,
+        modifiers: [
+          { name: "Medium", priceDelta: 0 },
+          { name: "Large", priceDelta: 10 }
+        ],
+        stock: 40,
+        costPrice: 28,
+        lowStockThreshold: 10,
+      },
+      p_ft_strawberry: {
+        categoryId: "cat_fruittea",
+        name: "Fruit Tea - Strawberry",
+        price: 59,
+        imageUrl: "",
+        isAvailable: true,
+        modifiers: [
+          { name: "Medium", priceDelta: 0 },
+          { name: "Large", priceDelta: 10 }
+        ],
+        stock: 40,
+        costPrice: 28,
+        lowStockThreshold: 10,
+      },
+      p_ft_kiwi: {
+        categoryId: "cat_fruittea",
+        name: "Fruit Tea - Kiwi",
+        price: 59,
+        imageUrl: "",
+        isAvailable: true,
+        modifiers: [
+          { name: "Medium", priceDelta: 0 },
+          { name: "Large", priceDelta: 10 }
+        ],
+        stock: 40,
+        costPrice: 28,
+        lowStockThreshold: 10,
+      },
+      p_ft_passionfruit: {
+        categoryId: "cat_fruittea",
+        name: "Fruit Tea - Passion Fruit",
+        price: 59,
+        imageUrl: "",
+        isAvailable: true,
+        modifiers: [
+          { name: "Medium", priceDelta: 0 },
+          { name: "Large", priceDelta: 10 }
+        ],
+        stock: 40,
+        costPrice: 28,
+        lowStockThreshold: 10,
+      },
+      p_ft_four_season: {
+        categoryId: "cat_fruittea",
+        name: "Fruit Tea - Four Season",
+        price: 59,
+        imageUrl: "",
+        isAvailable: true,
+        modifiers: [
+          { name: "Medium", priceDelta: 0 },
+          { name: "Large", priceDelta: 10 }
+        ],
+        stock: 40,
+        costPrice: 28,
         lowStockThreshold: 10,
       },
 
