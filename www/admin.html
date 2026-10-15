@@ -59,68 +59,41 @@
   </header>
 
   <div class="flex-1 flex overflow-hidden relative z-10">
-    <!-- Enhanced Desktop Sidebar -->
-    <nav class="hidden sm:flex flex-col w-16 md:w-20 lg:w-56 bp-admin-nav text-espresso-200 shrink-0 relative">
+    <!-- Unified Sidebar - Same layout on all devices -->
+    <nav class="hidden sm:flex flex-col w-16 bp-admin-nav text-espresso-200 shrink-0 relative">
       <div class="absolute inset-0 bg-gradient-to-b from-emerald-500/5 to-transparent pointer-events-none"></div>
-      <button data-tab="dashboard" class="bp-nav-btn flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-xs sm:text-sm font-bold transition-colors relative z-10 hover:bg-white/10">
-        <span class="text-base sm:text-lg">⚡</span><span class="hidden md:inline font-bold">Dashboard</span>
+      <button data-tab="dashboard" class="bp-nav-btn flex items-center justify-center px-3 py-4 text-xs font-bold transition-colors relative z-10 hover:bg-white/10">
+        <span class="text-lg">⚡</span>
       </button>
-      <button data-tab="inventory" class="bp-nav-btn flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-xs sm:text-sm font-bold transition-colors relative z-10 hover:bg-white/10">
-        <span class="text-base sm:text-lg">📦</span><span class="hidden md:inline font-bold">Inventory</span>
+      <button data-tab="inventory" class="bp-nav-btn flex items-center justify-center px-3 py-4 text-xs font-bold transition-colors relative z-10 hover:bg-white/10">
+        <span class="text-lg">📦</span>
       </button>
-      <button data-tab="pos" class="bp-nav-btn flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-xs sm:text-sm font-bold transition-colors relative z-10 hover:bg-white/10">
-        <span class="text-base sm:text-lg">�</span><span class="hidden md:inline font-bold">POS</span>
+      <button data-tab="pos" class="bp-nav-btn flex items-center justify-center px-3 py-4 text-xs font-bold transition-colors relative z-10 hover:bg-white/10">
+        <span class="text-lg">🧇</span>
       </button>
-      <button data-tab="order-history" class="bp-nav-btn flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-xs sm:text-sm font-bold transition-colors relative z-10 hover:bg-white/10">
-        <span class="text-base sm:text-lg">📜</span><span class="hidden md:inline font-bold">Order History</span>
+      <button data-tab="order-history" class="bp-nav-btn flex items-center justify-center px-3 py-4 text-xs font-bold transition-colors relative z-10 hover:bg-white/10">
+        <span class="text-lg">📜</span>
       </button>
-      <button data-tab="sales-tracker" class="bp-nav-btn flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-xs sm:text-sm font-bold transition-colors relative z-10 hover:bg-white/10">
-        <span class="text-base sm:text-lg">📈</span><span class="hidden md:inline font-bold">Sales Tracker</span>
+      <button data-tab="sales-tracker" class="bp-nav-btn flex items-center justify-center px-3 py-4 text-xs font-bold transition-colors relative z-10 hover:bg-white/10">
+        <span class="text-lg">📈</span>
       </button>
-      <button data-tab="settings" class="bp-nav-btn flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-xs sm:text-sm font-bold transition-colors relative z-10 hover:bg-white/10">
-        <span class="text-base sm:text-lg">⚙️</span><span class="hidden md:inline font-bold">Settings</span>
+      <button data-tab="settings" class="bp-nav-btn flex items-center justify-center px-3 py-4 text-xs font-bold transition-colors relative z-10 hover:bg-white/10">
+        <span class="text-lg">⚙️</span>
       </button>
       <div class="mt-auto"></div>
-      <button data-action="logout" class="bp-nav-btn flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-xs sm:text-sm font-bold transition-colors relative z-10 text-rust-300 hover:text-rust-200 hover:bg-white/10">
-        <span class="text-base sm:text-lg">🚪</span><span class="hidden md:inline font-bold">Logout</span>
+      <button data-action="logout" class="bp-nav-btn flex items-center justify-center px-3 py-4 text-xs font-bold transition-colors relative z-10 text-rust-300 hover:text-rust-200 hover:bg-white/10">
+        <span class="text-lg">🚪</span>
       </button>
     </nav>
 
     <!-- Main Content Area -->
     <main id="admin-main" class="flex-1 min-w-0 relative bg-gradient-to-br from-cream-50/50 to-amber-50/30 backdrop-blur-sm min-h-0">
-      <!-- Slideshow Container -->
-      <div id="slideshow-container" class="relative w-full h-full overflow-hidden">
-        <div id="slideshow-track" class="flex transition-transform duration-500 ease-in-out h-full">
-          <section id="view-dashboard" class="bp-view w-full h-full min-h-0 flex-shrink-0 overflow-y-auto bp-scroll"></section>
-          <section id="view-inventory" class="bp-view w-full h-full min-h-0 flex-shrink-0 overflow-y-auto bp-scroll"></section>
-          <section id="view-pos" class="bp-view w-full h-full min-h-0 flex-shrink-0"></section>
-          <section id="view-order-history" class="bp-view w-full h-full min-h-0 flex-shrink-0 overflow-y-auto bp-scroll"></section>
-          <section id="view-sales-tracker" class="bp-view w-full h-full min-h-0 flex-shrink-0 overflow-y-auto bp-scroll"></section>
-          <section id="view-settings" class="bp-view w-full h-full min-h-0 flex-shrink-0 overflow-y-auto bp-scroll"></section>
-        </div>
-
-        <!-- Slideshow Navigation Arrows -->
-        <button id="slide-prev" class="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center text-espresso-900 transition-all hover:scale-110 opacity-0 hover:opacity-100">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-          </svg>
-        </button>
-        <button id="slide-next" class="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center text-espresso-900 transition-all hover:scale-110 opacity-0 hover:opacity-100">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </button>
-
-        <!-- Slideshow Dots -->
-        <div id="slide-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-          <button data-slide="0" class="slide-dot w-2 h-2 rounded-full bg-espresso-300/50 hover:bg-espresso-500 transition-all"></button>
-          <button data-slide="1" class="slide-dot w-2 h-2 rounded-full bg-espresso-300/50 hover:bg-espresso-500 transition-all"></button>
-          <button data-slide="2" class="slide-dot w-2 h-2 rounded-full bg-espresso-300/50 hover:bg-espresso-500 transition-all"></button>
-          <button data-slide="3" class="slide-dot w-2 h-2 rounded-full bg-espresso-300/50 hover:bg-espresso-500 transition-all"></button>
-          <button data-slide="4" class="slide-dot w-2 h-2 rounded-full bg-espresso-300/50 hover:bg-espresso-500 transition-all"></button>
-          <button data-slide="5" class="slide-dot w-2 h-2 rounded-full bg-espresso-300/50 hover:bg-espresso-500 transition-all"></button>
-        </div>
-      </div>
+      <section id="view-dashboard" class="bp-view h-full min-h-0 hidden overflow-y-auto bp-scroll"></section>
+      <section id="view-inventory" class="bp-view h-full min-h-0 hidden overflow-y-auto bp-scroll"></section>
+      <section id="view-pos" class="bp-view h-full min-h-0 hidden"></section>
+      <section id="view-order-history" class="bp-view h-full min-h-0 hidden overflow-y-auto bp-scroll"></section>
+      <section id="view-sales-tracker" class="bp-view h-full min-h-0 hidden overflow-y-auto bp-scroll"></section>
+      <section id="view-settings" class="bp-view h-full min-h-0 hidden overflow-y-auto bp-scroll"></section>
     </main>
   </div>
 
@@ -165,99 +138,6 @@
       <span class="text-base sm:text-lg">🚪</span>Logout
     </button>
   </nav>
-
-  <script>
-    // Slideshow functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const track = document.getElementById('slideshow-track');
-      const prevBtn = document.getElementById('slide-prev');
-      const nextBtn = document.getElementById('slide-next');
-      const dots = document.querySelectorAll('.slide-dot');
-      const navBtns = document.querySelectorAll('.bp-nav-btn[data-tab]');
-
-      let currentSlide = 0;
-      const totalSlides = 6;
-      const slideNames = ['dashboard', 'inventory', 'pos', 'order-history', 'sales-tracker', 'settings'];
-
-      function goToSlide(index) {
-        if (index < 0) index = totalSlides - 1;
-        if (index >= totalSlides) index = 0;
-
-        currentSlide = index;
-        track.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-        // Update dots
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === currentSlide);
-        });
-
-        // Update nav buttons
-        navBtns.forEach(btn => {
-          const tab = btn.getAttribute('data-tab');
-          if (tab === slideNames[currentSlide]) {
-            btn.classList.add('bg-espresso-900');
-          } else {
-            btn.classList.remove('bg-espresso-900');
-          }
-        });
-      }
-
-      // Navigation arrows
-      prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
-      nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
-
-      // Dot navigation
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => goToSlide(index));
-      });
-
-      // Nav button navigation
-      navBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const tab = btn.getAttribute('data-tab');
-          const index = slideNames.indexOf(tab);
-          if (index !== -1) {
-            goToSlide(index);
-          }
-        });
-      });
-
-      // Keyboard navigation
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
-        if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
-      });
-
-      // Touch/swipe support
-      let touchStartX = 0;
-      let touchEndX = 0;
-
-      track.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      });
-
-      track.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-      });
-
-      function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-          if (diff > 0) {
-            goToSlide(currentSlide + 1);
-          } else {
-            goToSlide(currentSlide - 1);
-          }
-        }
-      }
-
-      // Initialize first slide
-      goToSlide(0);
-    });
-  </script>
 
   <script type="module">
     console.log("Admin HTML: Script loading...");
