@@ -36,27 +36,25 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Check directory structure
+        run: |
+          echo "=== Root directory ==="
+          ls -la
+          echo "=== Android directory ==="
+          ls -la android/ || echo "Android directory not found"
+          echo "=== Check capacitor.config.json ==="
+          cat capacitor.config.json
+
       - name: Grant execute permission for gradlew
         run: chmod +x android/gradlew
 
       - name: Sync Capacitor
-        run: |
-          echo "Starting Capacitor sync..."
-          npx cap sync android || {
-            echo "Capacitor sync failed with exit code $?"
-            exit 1
-          }
-          echo "Capacitor sync completed successfully"
+        run: npx cap sync android
 
       - name: Build APK (Release)
         run: |
-          echo "Starting APK build..."
           cd android
-          ./gradlew assembleRelease --no-daemon || {
-            echo "Gradle build failed with exit code $?"
-            exit 1
-          }
-          echo "APK build completed successfully"
+          ./gradlew assembleRelease --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
@@ -64,3 +62,12 @@ jobs:
           name: Waffle-King-POS-APK
           path: android/app/build/outputs/apk/release/app-release.apk
           retention-days: 30
+
+      - name: Upload build logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: |
+            android/app/build/reports/
+            android/build/reports/
