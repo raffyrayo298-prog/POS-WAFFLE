@@ -30,18 +30,9 @@ jobs:
       - name: Copy web assets to www directory
         run: |
           mkdir -p www
-          cp -r css js lib assets images manifest.json sw.js www/
-          # Copy all HTML files
-          cp *.html www/ 2>/dev/null || true
-          # Ensure index.html exists as the entry point
-          if [ -f index.html ]; then
-            cp index.html www/index.html
-          fi
-          # List what was copied
-          echo "Files in www:"
+          find . -maxdepth 1 -name "*.html" -exec cp {} www/ \;
+          cp -r css js lib assets images manifest.json sw.js www/ 2>/dev/null || true
           ls -la www/
-          echo "Checking for index.html:"
-          test -f www/index.html && echo "index.html found" || echo "index.html NOT found"
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -61,7 +52,7 @@ jobs:
       - name: Build APK (Release)
         run: |
           cd android
-          ./gradlew assembleRelease --no-daemon --stacktrace
+          ./gradlew assembleRelease --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
@@ -69,15 +60,3 @@ jobs:
           name: Waffle-King-POS-APK
           path: android/app/build/outputs/apk/release/app-release.apk
           retention-days: 30
-
-      - name: Generate build info
-        run: |
-          echo "Build completed at: $(date)" > build-info.txt
-          echo "Commit: ${{ github.sha }}" >> build-info.txt
-          echo "Branch: ${{ github.ref_name }}" >> build-info.txt
-
-      - name: Upload build info
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-info
-          path: build-info.txt
