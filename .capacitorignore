@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+
+# Build output
+www/
+
+# Capacitor
+android/
+ios/
+electron/
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+*.md
+.github/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+
+# Vercel
+.vercelignore
+vercel.json
+
+# Capacitor config
+capacitor.config.json
+
+# Test files
+tests/
+playwright-report/
+test-results/
+
+# Firebase
+firebase-debug.log
+.firebase/
+
+# OS files
+.DS_Store
+Thumbs.db

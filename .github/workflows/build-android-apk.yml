@@ -40,12 +40,23 @@ jobs:
         run: chmod +x android/gradlew
 
       - name: Sync Capacitor
-        run: npx cap sync android
+        run: |
+          echo "Starting Capacitor sync..."
+          npx cap sync android || {
+            echo "Capacitor sync failed with exit code $?"
+            exit 1
+          }
+          echo "Capacitor sync completed successfully"
 
       - name: Build APK (Release)
         run: |
+          echo "Starting APK build..."
           cd android
-          ./gradlew assembleRelease --no-daemon
+          ./gradlew assembleRelease --no-daemon || {
+            echo "Gradle build failed with exit code $?"
+            exit 1
+          }
+          echo "APK build completed successfully"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
