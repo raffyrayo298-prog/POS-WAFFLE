@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
@@ -30,11 +30,18 @@ jobs:
       - name: Copy web assets to www directory
         run: |
           mkdir -p www
-          cp -r css js lib assets images manifest.json sw.js *.html www/
-          # Ensure index.html exists (it's the default entry point)
-          if [ ! -f www/index.html ]; then
+          cp -r css js lib assets images manifest.json sw.js www/
+          # Copy all HTML files
+          cp *.html www/ 2>/dev/null || true
+          # Ensure index.html exists as the entry point
+          if [ -f index.html ]; then
             cp index.html www/index.html
           fi
+          # List what was copied
+          echo "Files in www:"
+          ls -la www/
+          echo "Checking for index.html:"
+          test -f www/index.html && echo "index.html found" || echo "index.html NOT found"
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -54,7 +61,7 @@ jobs:
       - name: Build APK (Release)
         run: |
           cd android
-          ./gradlew assembleRelease --no-daemon
+          ./gradlew assembleRelease --no-daemon --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
