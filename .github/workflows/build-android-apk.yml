@@ -27,13 +27,6 @@ jobs:
       - name: Build CSS
         run: npm run build
 
-      - name: Copy web assets to www directory
-        run: |
-          mkdir -p www
-          find . -maxdepth 1 -name "*.html" -exec cp {} www/ \;
-          cp -r css js lib assets images manifest.json sw.js www/ 2>/dev/null || true
-          ls -la www/
-
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
