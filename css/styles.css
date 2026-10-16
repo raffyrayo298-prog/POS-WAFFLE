@@ -971,12 +971,10 @@ main.bp-order-main {
 
 @media (min-width: 1280px) {
   #product-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 }
 
-/* Ultra-wide screens (1920px+) */
-@media (min-width: 1920px) {
   #product-grid {
     grid-template-columns: repeat(3, 1fr) !important;
   }
